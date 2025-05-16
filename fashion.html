@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éclat | Haute Couture Fashion House</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: var(--transition);
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-icons a {
+            color: var(--black);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .nav-icons a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            margin-top: 80px;
+            background: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            position: relative;
+            color: var(--white);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.3) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .hero-btn {
+            background-color: transparent;
+            color: var(--white);
+            padding: 15px 30px;
+            border: 1px solid var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .hero-btn:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        /* Collections Section */
+        .collections {
+            padding: 100px 10%;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            display: block;
+        }
+        
+        .collections h2 {
+            font-size: 42px;
+            margin-bottom: 60px;
+        }
+        
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .collection-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .collection-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .collection-card:hover .collection-img {
+            transform: scale(1.05);
+        }
+        
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: var(--white);
+            text-align: left;
+        }
+        
+        .collection-overlay h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .collection-overlay p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .view-collection {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        
+        .view-collection:hover {
+            color: var(--gold);
+        }
+        
+        .view-collection i {
+            font-size: 10px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 10%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+        
+        .about-img {
+            flex: 1;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .signature {
+            font-family: 'Parisienne', cursive;
+            font-size: 24px;
+            color: var(--gold);
+            margin-top: 20px;
+        }
+        
+        /* Featured Products */
+        .featured {
+            padding: 100px 10%;
+        }
+        
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .featured-header h2 {
+            font-size: 42px;
+        }
+        
+        .featured-tabs {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .featured-tab {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding-bottom: 5px;
+            position: relative;
+        }
+        
+        .featured-tab.active {
+            color: var(--gold);
+        }
+        
+        .featured-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gold);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            position: relative;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--gold);
+            color: var(--white);
+            font-size: 10px;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img {
+            opacity: 0.8;
+        }
+        
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .product-info p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 10%;
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0 30px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 80px 10% 30px;
+            background-color: var(--light-gray);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background-color: var(--black);
+        }
+        
+        .footer-col p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--black);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: var(--black);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 12px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .featured-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .featured-tabs {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Éclat</div>
+        <div class="nav-links">
+            <a href="#">New Arrivals</a>
+            <a href="#">Collections</a>
+            <a href="#">Couture</a>
+            <a href="#">Accessories</a>
+            <a href="#">Journal</a>
+        </div>
+        <div class="nav-icons">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+            <a href="#"><i class="fas fa-shopping-bag"></i></a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="section-title">Spring/Summer 2024</span>
+            <h1>Timeless Elegance Reimagined</h1>
+            <p>Discover our latest collection where classic sophistication meets contemporary design. Each piece is crafted with unparalleled attention to detail and the finest materials.</p>
+            <button class="hero-btn">Explore the Collection</button>
+        </div>
+    </section>
+    
+    <!-- Collections Section -->
+    <section class="collections">
+        <span class="section-title">Our Collections</span>
+        <h2>Curated for the Discerning Individual</h2>
+        <div class="collection-grid">
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Women's Collection" class="collection-img">
+                <div class="collection-overlay">
+                    <h3>Women's Couture</h3>
+                    <p>Exquisite designs that celebrate femininity</p>
+                    <a href="#" class="view-collection">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Men's Collection" class="collection-img">
+                <div class="collection-overlay">
+                    <h3>Men's Tailoring</h3>
+                    <p>Timeless elegance meets modern craftsmanship</p>
+                    <a href="#" class="view-collection">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Accessories" class="collection-img">
+                <div class="collection-overlay">
+                    <h3>Luxury Accessories</h3>
+                    <p>The perfect complement to any ensemble</p>
+                    <a href="#" class="view-collection">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-img"></div>
+        <div class="about-content">
+            <span class="section-title">Our Heritage</span>
+            <h2>Seven Decades of Haute Couture Excellence</h2>
+            <p>Founded in Paris in 1952, Éclat has been at the forefront of fashion innovation while maintaining the highest standards of craftsmanship. Each garment is a testament to our dedication to quality and timeless design.</p>
+            <p>Our atelier brings together the most skilled artisans who handcraft each piece using techniques passed down through generations, combined with contemporary design sensibilities.</p>
+            <p class="signature">Gabrielle Laurent</p>
+            <p>Creative Director</p>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="featured">
+        <div class="featured-header">
+            <h2>Featured Pieces</h2>
+            <div class="featured-tabs">
+                <div class="featured-tab active">Women</div>
+                <div class="featured-tab">Men</div>
+                <div class="featured-tab">Accessories</div>
+                <div class="featured-tab">Bestsellers</div>
+            </div>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-badge">New</div>
+                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Silk Evening Gown" class="product-img">
+                <div class="product-info">
+                    <h3>Silk Chiffon Evening Gown</h3>
+                    <p>Spring/Summer 2024</p>
+                    <div class="product-price">$2,450</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Wool Cashmere Coat" class="product-img">
+                <div class="product-info">
+                    <h3>Wool-Cashmere Blend Coat</h3>
+                    <p>Fall/Winter 2023</p>
+                    <div class="product-price">$1,850</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-badge">Bestseller</div>
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Tailored Suit" class="product-img">
+                <div class="product-info">
+                    <h3>Tailored Wool Suit</h3>
+                    <p>Year-Round Collection</p>
+                    <div class="product-price">$1,950</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Leather Handbag" class="product-img">
+                <div class="product-info">
+                    <h3>Signature Leather Handbag</h3>
+                    <p>Accessories</p>
+                    <div class="product-price">$1,250</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Join Our World</h2>
+        <p>Subscribe to receive exclusive previews, private event invitations, and insights into the world of Éclat.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your email address">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Éclat</h3>
+                <p>Redefining luxury fashion through exceptional craftsmanship and timeless design since 1952.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Care</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Store Policy</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Boutiques</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Paris</a></li>
+                    <li><a href="#">New York</a></li>
+                    <li><a href="#">London</a></li>
+                    <li><a href="#">Milan</a></li>
+                    <li><a href="#">Tokyo</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>32 Avenue Montaigne<br>75008 Paris, France</p>
+                <p>+33 1 53 57 49 40</p>
+                <p>contact@eclat.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Éclat Haute Couture. All Rights Reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.featured-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                // Here you would typically filter products
+            });
+        });
+    </script>
+</body>
+</html>
